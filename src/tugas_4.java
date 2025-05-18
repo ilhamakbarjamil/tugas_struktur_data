@@ -1,5 +1,4 @@
 public class tugas_4 {
-    // Node class for BST
     static class Node {
         int key;
         Node left, right;
@@ -10,69 +9,55 @@ public class tugas_4 {
         }
     }
 
-    // Root of BST
     Node root;
 
-    // Constructor
     public tugas_4() {
         root = null;
     }
 
-    // Method to insert a new key in BST
     public void insert(int key) {
         root = insertRec(root, key);
     }
 
-    // A recursive function to insert a new key in BST
     private Node insertRec(Node root, int key) {
-        // If the tree is empty, return a new node
         if (root == null) {
             root = new Node(key);
             return root;
         }
 
-        // Otherwise, recur down the tree
         if (key < root.key)
             root.left = insertRec(root.left, key);
         else if (key > root.key)
             root.right = insertRec(root.right, key);
 
-        // Return the unchanged node pointer
         return root;
     }
 
-    // Method to track the path of searching a key in BST
     public String track(int key) {
-        // Start with the root node
         Node current = root;
-        // Initialize the result string
         String result = "";
         
-        // Check if tree is empty
         if (current == null) {
             return "Tree is empty";
         }
         
-        // Add the root value to the result
-        result += current.key;
         
-        // Traverse the tree
+        result += current.key;
         while (current != null && current.key != key) {
             if (key < current.key) {
-                // Check if left child exists
+                
                 if (current.left == null) {
                     result += " kiri null";
-                    current = null; // Exit the loop
+                    current = null; 
                     break;
                 } else {
                     result += " kiri " + current.left.key;
                     current = current.left;
                 }
             } else {
-                // Check if right child exists
                 if (current.right == null) {
                     result += " kanan null";
-                    current = null; // Exit the loop
+                    current = null; 
                     break;
                 } else {
                     result += " kanan " + current.right.key;
@@ -80,8 +65,7 @@ public class tugas_4 {
                 }
             }
         }
-        
-        // Add the result message
+
         if (current != null && current.key == key) {
             result += ". Key ditemukan";
         } else {
